@@ -1,0 +1,132 @@
+{
+  "@odata.context": "https://copilot.search.windows.net/$metadata#indexes/$entity",
+  "@odata.etag": "\"0x8DC32F603B6B546\"",
+  "name": "",
+  "defaultScoringProfile": null,
+  "fields": [
+    {
+      "name": "objectUuid",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": true,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": true,
+      "indexAnalyzer": null,
+      "searchAnalyzer": null,
+      "analyzer": null,
+      "vectorSearchProfile": null,
+      "synonymMaps": []
+    },
+    {
+      "name": "commentId",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": true,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "indexAnalyzer": null,
+      "searchAnalyzer": null,
+      "analyzer": null,
+      "dimensions": null,
+      "vectorSearchProfile": null,
+      "synonymMaps": []
+    },
+    {
+      "name": "comment",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "indexAnalyzer": "englishAnalyzer",
+      "searchAnalyzer": "englishAnalyzer",
+      "analyzer": null,
+      "dimensions": null,
+      "vectorSearchProfile": null,
+      "synonymMaps": []
+    },
+    {
+      "name": "embeddings",
+      "type": "Collection(Edm.Single)",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": false,
+      "stored": true,
+      "key": false,
+      "indexAnalyzer": null,
+      "searchAnalyzer": null,
+      "analyzer": null,
+      "dimensions": 384,
+      "vectorSearchProfile": "vector-profile-1",
+      "synonymMaps": []
+    }
+  ],
+  "scoringProfiles": [],
+  "corsOptions": null,
+  "suggesters": [],
+  "analyzers": [
+    {
+      "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
+      "name": "whitespaceAnalyzer",
+      "tokenizer": "whitespace",
+      "tokenFilters": [
+        "lowercase"
+      ],
+      "charFilters": []
+    },
+    {
+      "@odata.type": "#Microsoft.Azure.Search.CustomAnalyzer",
+      "name": "englishAnalyzer",
+      "tokenizer": "whitespace",
+      "tokenFilters": [
+        "lowercase",
+        "word_delimiter",
+        "englishStemmer"
+      ],
+      "charFilters": []
+    }
+  ],
+  "tokenizers": [],
+  "tokenFilters": [
+    {
+      "@odata.type": "#Microsoft.Azure.Search.StemmerTokenFilter",
+      "name": "englishStemmer",
+      "language": "english"
+    }
+  ],
+  "charFilters": [],
+  "encryptionKey": null,
+  "similarity": {
+    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
+    "k1": null,
+    "b": null
+  },
+  "semantic": null,
+ "vectorSearch": {
+        "algorithms": [
+            {
+                "name": "hnsw-1",
+                "kind": "hnsw",
+                "hnswParameters": {
+                    "m": 4,
+                    "efConstruction": 400,
+                    "efSearch": 500,
+                    "metric": "cosine"
+                }
+            }
+        ],
+        "profiles": [
+            {
+                "name": "vector-profile-1",
+                "algorithm": "hnsw-1"
+            }
+        ]
+    }
+}
