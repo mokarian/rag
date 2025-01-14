@@ -32,7 +32,7 @@ class ACSClient:
 
         index_schema["name"] = self.index_name
 
-        url = f"{self.endpoint}indexes/{self.index_name}?api-version={self.api_version}"
+        url = f"{self.endpoint}indexes/{self.index_name}{self.api_version}"
 
         try:
             response = requests.put(url, headers=self.headers,
